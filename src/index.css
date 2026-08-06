@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Default Dark Mode Theme */
+  --color-base: #050608;
+  --color-base-soft: #0a0c10;
+  --color-base-raised: #101318;
+  --color-accent: #4f8cff;
+  --color-accent-soft: #7facff;
+  --color-accent-dim: #2c5fcc;
+  --color-edge: rgba(255, 255, 255, 0.08);
+  --color-ink: #f2f4f8;
+  --color-ink-muted: #9aa3b2;
+  --color-ink-faint: #5b6472;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-hover-bg: rgba(255, 255, 255, 0.06);
+  --glass-hover-border: rgba(255, 255, 255, 0.14);
+  --bg-grid-fade: none;
+  --scrollbar-track: #050608;
+  --scrollbar-thumb: #1a1e26;
+  --scrollbar-thumb-hover: #2a3040;
+}
+
+html.light {
+  /* Vibrant Light Mode Theme */
+  --color-base: #f8fafc;
+  --color-base-soft: #f1f5f9;
+  --color-base-raised: #ffffff;
+  --color-accent: #2563eb;
+  --color-accent-soft: #3b82f6;
+  --color-accent-dim: #1d4ed8;
+  --color-edge: rgba(15, 23, 42, 0.12);
+  --color-ink: #0f172a;
+  --color-ink-muted: #475569;
+  --color-ink-faint: #64748b;
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(15, 23, 42, 0.1);
+  --glass-hover-bg: rgba(255, 255, 255, 0.95);
+  --glass-hover-border: rgba(37, 99, 235, 0.3);
+  --bg-grid-fade: none;
+  --scrollbar-track: #f1f5f9;
+  --scrollbar-thumb: #cbd5e1;
+  --scrollbar-thumb-hover: #94a3b8;
+}
+
+::selection {
+  background: rgba(79, 140, 255, 0.35);
+  color: #ffffff;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  @apply bg-base text-ink font-sans antialiased transition-colors duration-300;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@layer components {
+  .glass {
+    background-color: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    @apply backdrop-blur-xl transition-all duration-300;
+  }
+  .glass-hover {
+    @apply transition-all duration-300;
+  }
+  .glass-hover:hover {
+    background-color: var(--glass-hover-bg);
+    border-color: var(--glass-hover-border);
+  }
+  .section-shell {
+    @apply relative mx-auto max-w-7xl px-6 py-24 sm:px-8 md:py-32;
+  }
+  .eyebrow {
+    @apply mb-4 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-accent;
+  }
+  .heading-lg {
+    @apply font-display text-4xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-5xl md:text-6xl;
+  }
+  .body-muted {
+    @apply text-base leading-relaxed text-ink-muted;
+  }
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white shadow-glow transition-transform duration-300 hover:scale-[1.03] active:scale-[0.98];
+  }
+  .btn-ghost {
+    background-color: var(--glass-bg);
+    border: 1px solid var(--color-edge);
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-ink transition-all duration-300;
+  }
+  .btn-ghost:hover {
+    background-color: var(--glass-hover-bg);
+    border-color: var(--glass-hover-border);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.no-cursor {
+  cursor: none;
+}
+
+@media (max-width: 768px) {
+  .no-cursor {
+    cursor: auto;
+  }
+}
